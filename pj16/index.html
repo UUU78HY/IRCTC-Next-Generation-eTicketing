@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Next Generation eTicketing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IRCTC Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: #fff;
+    }
+    .container {
+      width: 350px;
+      max-width: 90%;
+      margin: 100px auto;
+      background: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a5298;
+      margin-bottom: 20px;
+    }
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 95%;
+      padding: 10px;
+      background: #2a5298;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #1e3c72;
+    }
+    .dashboard {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+    }
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .feature {
+      background: #fff;
+      color: #000;
+      padding: 15px;
+      border-radius: 8px;
+      width: 150px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+    }
+    .feature:hover {
+      background: #2a5298;
+      color: #fff;
+    }
+    .page {
+      display: none;
+      margin-top: 20px;
+      background: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .navbar {
+      display: none;
+      background: #1e3c72;
+      padding: 10px;
+      text-align: center;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .features { flex-direction: column; align-items: center; }
+      .feature { width: 80%; }
+    }
+    @media (max-width: 480px) {
+      .logo { font-size: 22px; }
+      input, button { font-size: 14px; }
+      .feature { width: 100%; }
+      .navbar a { display: block; margin: 10px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div class="container" id="loginPage">
+    <div class="logo">IRCTC</div>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <div class="navbar" id="navbar">
+    <a href="#" onclick="goDashboard()">Dashboard</a>
+    <a href="#" onclick="openPage('bookTicket')">Book Ticket</a>
+    <a href="#" onclick="openPage('pnrStatus')">PNR Status</a>
+    <a href="#" onclick="openPage('trainSchedule')">Train Schedule</a>
+    <a href="#" onclick="openPage('food')">Food</a>
+    <a href="#" onclick="openPage('hotels')">Hotels</a>
+    <a href="#" onclick="openPage('insurance')">Insurance</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <h1>Welcome to IRCTC</h1>
+    <div class="features">
+      <div class="feature" onclick="openPage('bookTicket')">Book Ticket</div>
+      <div class="feature" onclick="openPage('pnrStatus')">PNR Status</div>
+      <div class="feature" onclick="openPage('trainSchedule')">Train Schedule</div>
+      <div class="feature" onclick="openPage('food')">Food / E-Catering</div>
+      <div class="feature" onclick="openPage('hotels')">Hotels</div>
+      <div class="feature" onclick="openPage('insurance')">Insurance</div>
+    </div>
+  </div>
+
+  <!-- Feature Pages with Dummy Forms -->
+  <div class="page" id="bookTicket">
+    <h2>Book Ticket</h2>
+    <form>
+      <input type="text" placeholder="From Station">
+      <input type="text" placeholder="To Station">
+      <input type="date">
+      <select>
+        <option>Select Class</option>
+        <option>Sleeper</option>
+        <option>AC 3 Tier</option>
+        <option>AC 2 Tier</option>
+        <option>AC 1 Tier</option>
+      </select>
+      <button type="button">Search Trains</button>
+    </form>
+  </div>
+
+  <div class="page" id="pnrStatus">
+    <h2>PNR Status</h2>
+    <form>
+      <input type="text" placeholder="Enter PNR Number">
+      <button type="button">Check Status</button>
+    </form>
+  </div>
+
+  <div class="page" id="trainSchedule">
+    <h2>Train Schedule</h2>
+    <form>
+      <input type="text" placeholder="Enter Train Number">
+      <button type="button">View Schedule</button>
+    </form>
+  </div>
+
+  <div class="page" id="food">
+    <h2>Food / E-Catering</h2>
+    <form>
+      <input type="text" placeholder="Enter Train Number">
+      <input type="text" placeholder="Enter PNR Number">
+      <button type="button">Order Food</button>
+    </form>
+  </div>
+
+  <div class="page" id="hotels">
+    <h2>Hotels</h2>
+    <form>
+      <input type="text" placeholder="Destination City">
+      <input type="date">
+      <button type="button">Search Hotels</button>
+    </form>
+  </div>
+
+  <div class="page" id="insurance">
+    <h2>Insurance</h2>
+    <form>
+      <input type="text" placeholder="Enter Passenger Name">
+      <input type="number" placeholder="Age">
+      <button type="button">Get Insurance</button>
+    </form>
+  </div>
+
+  <script>
+    function login() {
+      let user = document.getElementById("username").value;
+      let pass = document.getElementById("password").value;
+      if(user && pass) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("navbar").style.display = "block";
+      } else {
+        alert("Please enter Username and Password!");
+      }
+    }
+    function logout() {
+      document.getElementById("dashboard").style.display = "none";
+      document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+      document.getElementById("navbar").style.display = "none";
+      document.getElementById("loginPage").style.display = "block";
+    }
+    function goDashboard() {
+      document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+      document.getElementById("dashboard").style.display = "block";
+    }
+    function openPage(pageId) {
+      document.getElementById("dashboard").style.display = "none";
+      let pages = document.querySelectorAll(".page");
+      pages.forEach(p => p.style.display = "none");
+      document.getElementById(pageId).style.display = "block";
+    }
+  </script>
+
+
+<form action="https://www.irctc.co.in/nget/train-search">
+    <input type="text" placeholder= "officialwebsite" name="">
+    <button>visit website</button>
+</form>
+<form action="https://www.ixigo.com/trains/train-seat-availability?utm_source=Google&utm_medium=paid_search_google_trains&utm_campaign=train_search_desktop&gad_source=1&gad_campaignid=15571855646&gbraid=0AAAAAD7k6qt54qspPL0SXwOMgs3-3KWSJ&gclid=Cj0KCQiAm9fLBhCQARIsAJoNOcvmLBlOPQUe9lO632bqTZw8SJomULLPunH7biyUfGSVxamQUog8K2saAgu4EALw_wcB">
+    <input type="text" placeholder= "Book Train Tickets Online | IRCTC seat availability" name="">
+    <button>visit website</button>
+</form>
+<form action="https://www.makemytrip.com/railways/?cmp=SEM|D|Rail|Google|Generic|Generic_Rail_Msite|Generic_Keywords_Exact&gad_source=1&gad_campaignid=21056258349&gbraid=0AAAAAD5Az1SbZs3C_w2xStZxaAjGsQaKZ&gclid=Cj0KCQiAm9fLBhCQARIsAJoNOcvE56vm1sgRCVK9qWpdyrKpYd6KFqitoVAHZXwexxW2UxpqCCMU10MaAszzEALw_wcB">
+    <input type="text" placeholder= "Train ticket - IRCTC Train Booking" name="">
+    <button>visit website</button>
+</form>
+<form action="https://www.utsonmobile.indianrail.gov.in/login;jsessionid=38BA3AE79832AD4A6047DB87D0D20BE0?0">
+    <input type="text" placeholder= "UTS Mobile Ticketing
+" name="">
+    <button>visit website</button>
+</form>
+<form action="https://enquiry.indianrail.gov.in/mntes/">
+    <input type="text" placeholder= "NTES - Train Enquiry - Indian Railways
+" name="">
+    <button>visit website</button>
+</form>
+
+SAHU
+</body>
+</html>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
