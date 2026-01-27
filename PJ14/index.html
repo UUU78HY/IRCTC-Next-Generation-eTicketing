@@ -1,0 +1,170 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Cut | Premium Salon Experience</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark: #1a1a1a;
+            --light: #f4f4f4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body { background-color: var(--light); color: var(--dark); }
+
+        /* Navigation */
+        nav {
+            background: var(--dark);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+
+        /* Main Container */
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+
+        /* Sections */
+        .section { display: none; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Login Form */
+        .form-group { margin-bottom: 1rem; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+        
+        /* Service Cards */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .service-card { border: 2px solid #eee; padding: 1.5rem; text-align: center; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+        .service-card:hover { border-color: var(--gold); background: #fffdf5; }
+        .service-card.selected { border-color: var(--gold); background: var(--gold); color: white; }
+
+        /* Buttons */
+        .btn {
+            background: var(--dark);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        .btn:hover { background: #333; }
+
+        /* Success Message */
+        .success-box { text-align: center; color: green; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">ELITE CUT</div>
+    <div id="user-status">Welcome, Guest</div>
+</nav>
+
+<div class="container">
+    
+    <div id="step-login" class="section active">
+        <h2>Member Login</h2>
+        <p>Login karke apna best look payein!</p>
+        <div class="form-group">
+            <label>Mobile Number / Email</label>
+            <input type="text" id="username" placeholder="Enter details...">
+        </div>
+        <button class="btn" onclick="showSection('step-services')">Login & Continue</button>
+    </div>
+
+    <div id="step-services" class="section">
+        <h2>Choose Your Style</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="selectService(this, 'Classic Haircut', 300)">
+                <h3>Classic Cut</h3>
+                <p>₹300</p>
+            </div>
+            <div class="service-card" onclick="selectService(this, 'Beard Trim', 150)">
+                <h3>Beard Style</h3>
+                <p>₹150</p>
+            </div>
+            <div class="service-card" onclick="selectService(this, 'Luxury Facial', 800)">
+                <h3>Facial</h3>
+                <p>₹800</p>
+            </div>
+        </div>
+        <button class="btn" onclick="showSection('step-booking')">Book Appointment</button>
+    </div>
+
+    <div id="step-booking" class="section">
+        <h2>Select Date & Time</h2>
+        <div class="form-group">
+            <input type="date" id="date">
+            <input type="time" id="time">
+        </div>
+        <div id="summary" style="margin: 1rem 0; padding: 1rem; background: #f9f9f9; border-left: 5px solid var(--gold);">
+            Selected: <span id="selected-service-name">None</span>
+        </div>
+        <button class="btn" onclick="confirmBooking()">Confirm My Cutting</button>
+    </div>
+
+    <div id="step-confirm" class="section success-box">
+        <div style="font-size: 50px;">✂️</div>
+        <h2>Booking Successful!</h2>
+        <p>Aapka slot book ho chuka hai. Hum aapka intezar karenge!</p>
+        <button class="btn" onclick="location.reload()">Book Another</button>
+    </div>
+
+</div>
+
+<script>
+    let selectedService = "";
+    let price = 0;
+
+    function showSection(sectionId) {
+        // Sabhi sections ko hide karo
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        // Target section ko show karo
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Login update
+        let user = document.getElementById('username').value;
+        if(user) document.getElementById('user-status').innerText = "Hello, " + user;
+    }
+
+    function selectService(element, name, cost) {
+        // Highlight selection
+        document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+        element.classList.add('selected');
+        
+        selectedService = name;
+        price = cost;
+        document.getElementById('selected-service-name').innerText = name + " - ₹" + cost;
+    }
+
+    function confirmBooking() {
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+
+        if(!selectedService || !date || !time) {
+            alert("Please select Service, Date and Time!");
+            return;
+        }
+
+        showSection('step-confirm');
+    }
+</script>
+
+</body>
+</html>
+</body>
+</html>
