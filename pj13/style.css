@@ -1,0 +1,76 @@
+
+h{color: #e30f0f;}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
+    perspective: 1000px; /* 3D effect ke liye */
+}
+
+.solar-system {
+    position: relative;
+    width: 800px;
+    height: 800px;
+    transform-style: preserve-3d;
+    transform: rotateX(70deg) rotateY(-10deg); /* 3D tilt */
+}
+
+.sun {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, #ff0, #f90);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(-70deg);
+    box-shadow: 0 0 50px #f90;
+}
+
+/* Common Orbit Style */
+.orbit {
+    position: absolute;
+    top: 50%; left: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate linear infinite;
+}
+
+/* Common Planet Style */
+.planet {
+    position: absolute;
+    top: 0; left: 50%;
+    border-radius: 50%;
+    transform: translateX(-50%) rotateX(-70deg);
+}
+
+/* Planets Size, Speed and Distance */
+.mercury-orbit { width: 100px; height: 100px; animation-duration: 3s; }
+.mercury { width: 10px; height: 10px; background: #999; }
+
+.venus-orbit { width: 150px; height: 150px; animation-duration: 6s; }
+.venus { width: 15px; height: 15px; background: #e3bb76; }
+
+.earth-orbit { width: 210px; height: 210px; animation-duration: 10s; }
+.earth { width: 16px; height: 16px; background: #2271b3; }
+
+.mars-orbit { width: 270px; height: 270px; animation-duration: 15s; }
+.mars { width: 12px; height: 12px; background: #e27b58; }
+
+.jupiter-orbit { width: 380px; height: 380px; animation-duration: 25s; }
+.jupiter { width: 35px; height: 35px; background: #d39c7e; }
+
+.saturn-orbit { width: 500px; height: 500px; animation-duration: 35s; }
+.saturn { width: 30px; height: 30px; background: #c5ab6e; }
+
+.uranus-orbit { width: 600px; height: 600px; animation-duration: 45s; }
+.uranus { width: 22px; height: 22px; background: #b5e1e3; }
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
